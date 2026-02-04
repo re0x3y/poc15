@@ -1,0 +1,61 @@
+# POC 15 Configuration
+# Copy this file to config.yaml and adjust values as needed
+
+# Server configuration
+server:
+  # PACS/DICOMweb server address
+  pacs_addr: ":8083"
+  # Read header timeout for HTTP servers
+  read_header_timeout: 10s
+
+# IDP (Identity Provider) configuration
+idp:
+  issuer: ""
+  auth_token_ttl: 5m
+  access_token_ttl: 1h
+
+# Authorization server configuration
+authz:
+  issuer: "http://localhost:8082"
+  auth_code_ttl: 10m
+  access_token_ttl: 1h
+
+# DEZI OpenID Connect configuration
+dezi:
+  issuer: ""
+  client_id: ""
+  client_secret: ""
+  redirect_uri: ""
+  scopes:
+    - "openid"
+  # Token exchange resource URL (defaults to issuer if empty)
+  token_exchange_resource: ""
+  # Token introspection endpoint (defaults to {issuer}/introspect if empty)
+  introspect_url: ""
+  # HTTP client timeout
+  http_timeout: 30s
+
+# DICOMweb/PACS configuration
+dicomweb:
+  base_url: "http://localhost:8083"
+  bearer_token_ttl: 1h
+  # Secret for signing bearer tokens (change in production!)
+  bearer_token_secret: "dicomweb-secret-key-change-in-production"
+  # Token cleanup interval
+  cleanup_interval: 5m
+
+# IHE IUA Token Exchange configuration
+ihe_iua:
+  # Transaction ID (TID)
+  tid: ""
+  # Person ID OID
+  person_id: ""
+
+
+
+# Logging configuration
+logging:
+  # Enable HTTP request logging
+  http_requests: true
+  # Log level: debug, info, warn, error
+  level: "info"
